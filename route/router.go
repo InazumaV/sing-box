@@ -2,6 +2,7 @@ package route
 
 import (
 	"context"
+	"errors"
 	"net"
 	"net/netip"
 	"net/url"
@@ -320,6 +321,23 @@ func NewRouter(
 		router.timeService = ntp.NewService(ctx, router, logFactory.NewLogger("ntp"), ntpOptions)
 	}
 	return router, nil
+}
+
+func (r *Router) AddInbound(inbound adapter.Inbound) error {
+	if _, ok := r.inboundByTag[inbound.Tag()]; ok {
+		return errors.New("the inbound is exist")
+	}
+	r.inboundByTag[inbound.Tag()] = inbound
+	return nil
+}
+
+func (r *Router) DelInbound(tag string) error {
+	if _, ok := r.inboundByTag[tag]; ok {
+		delete(r.inboundByTag, tag)
+	} else {
+		return errors.New("the inbound not have")
+	}
+	return nil
 }
 
 func (r *Router) Initialize(inbounds []adapter.Inbound, outbounds []adapter.Outbound, defaultOutbound func() adapter.Outbound) error {
