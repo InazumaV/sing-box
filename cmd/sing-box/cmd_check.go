@@ -2,9 +2,9 @@ package main
 
 import (
 	"context"
+	box "github.com/inazumav/sing-box"
 
-	"github.com/sagernet/sing-box"
-	"github.com/sagernet/sing-box/log"
+	"github.com/inazumav/sing-box/log"
 
 	"github.com/spf13/cobra"
 )

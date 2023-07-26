@@ -3,8 +3,8 @@ package route
 import (
 	"strings"
 
-	"github.com/sagernet/sing-box/adapter"
-	"github.com/sagernet/sing-box/option"
+	"github.com/inazumav/sing-box/adapter"
+	"github.com/inazumav/sing-box/option"
 	"github.com/sagernet/sing/common"
 )
 

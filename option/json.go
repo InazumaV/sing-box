@@ -3,8 +3,8 @@ package option
 import (
 	"bytes"
 
-	"github.com/sagernet/sing-box/common/badjson"
-	"github.com/sagernet/sing-box/common/json"
+	"github.com/inazumav/sing-box/common/badjson"
+	"github.com/inazumav/sing-box/common/json"
 	"github.com/sagernet/sing/common"
 	E "github.com/sagernet/sing/common/exceptions"
 )

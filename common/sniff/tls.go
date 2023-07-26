@@ -5,8 +5,8 @@ import (
 	"crypto/tls"
 	"io"
 
-	"github.com/sagernet/sing-box/adapter"
-	C "github.com/sagernet/sing-box/constant"
+	"github.com/inazumav/sing-box/adapter"
+	C "github.com/inazumav/sing-box/constant"
 	"github.com/sagernet/sing/common/bufio"
 )
 

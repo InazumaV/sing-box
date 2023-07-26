@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"reflect"
 
-	"github.com/sagernet/sing-box/common/badjson"
-	"github.com/sagernet/sing-box/option"
+	"github.com/inazumav/sing-box/common/badjson"
+	"github.com/inazumav/sing-box/option"
 	E "github.com/sagernet/sing/common/exceptions"
 )
 

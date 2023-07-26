@@ -5,9 +5,9 @@ import (
 	"net"
 	"time"
 
-	"github.com/sagernet/sing-box/adapter"
-	"github.com/sagernet/sing-box/common/urltest"
-	"github.com/sagernet/sing-box/outbound"
+	"github.com/inazumav/sing-box/adapter"
+	"github.com/inazumav/sing-box/common/urltest"
+	"github.com/inazumav/sing-box/outbound"
 	"github.com/sagernet/sing/common"
 	"github.com/sagernet/sing/common/batch"
 	E "github.com/sagernet/sing/common/exceptions"

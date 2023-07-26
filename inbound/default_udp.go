@@ -5,7 +5,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/sagernet/sing-box/adapter"
+	"github.com/inazumav/sing-box/adapter"
 	"github.com/sagernet/sing/common"
 	"github.com/sagernet/sing/common/buf"
 	"github.com/sagernet/sing/common/control"

@@ -5,12 +5,12 @@ import (
 	"net"
 	"os"
 
-	"github.com/sagernet/sing-box/adapter"
-	"github.com/sagernet/sing-box/common/tls"
-	C "github.com/sagernet/sing-box/constant"
-	"github.com/sagernet/sing-box/log"
-	"github.com/sagernet/sing-box/option"
-	"github.com/sagernet/sing-box/transport/v2ray"
+	"github.com/inazumav/sing-box/adapter"
+	"github.com/inazumav/sing-box/common/tls"
+	C "github.com/inazumav/sing-box/constant"
+	"github.com/inazumav/sing-box/log"
+	"github.com/inazumav/sing-box/option"
+	"github.com/inazumav/sing-box/transport/v2ray"
 	"github.com/sagernet/sing-vmess"
 	"github.com/sagernet/sing-vmess/packetaddr"
 	"github.com/sagernet/sing/common"
@@ -118,6 +118,57 @@ func (h *VMess) Start() error {
 				h.logger.Error("transport serve error: ", sErr)
 			}
 		}()
+	}
+	return nil
+}
+
+func (h *VMess) AddUsers(users []option.VMessUser) error {
+	tmp := make([]option.VMessUser, 0, len(h.users)+len(users))
+	tmp = append(tmp, h.users...)
+	tmp = append(tmp, users...)
+	err := h.service.UpdateUsers(common.MapIndexed(tmp, func(index int, it option.VMessUser) int {
+		return index
+	}), common.Map(tmp, func(it option.VMessUser) string {
+		return it.UUID
+	}), common.Map(tmp, func(it option.VMessUser) int {
+		return it.AlterId
+	}))
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (h *VMess) DelUsers(name []string) error {
+	is := make([]int, 0, len(name))
+	ulen := len(name)
+	for i := range h.users {
+		for _, u := range name {
+			if h.users[i].Name == u {
+				is = append(is, i)
+				ulen--
+			}
+			if ulen == 0 {
+				break
+			}
+		}
+	}
+	ulen = len(h.users)
+	for _, i := range is {
+		h.users[i] = h.users[ulen-1]
+		h.users[ulen-1] = option.VMessUser{}
+		h.users = h.users[:ulen-1]
+		ulen--
+	}
+	err := h.service.UpdateUsers(common.MapIndexed(h.users, func(index int, it option.VMessUser) int {
+		return index
+	}), common.Map(h.users, func(it option.VMessUser) string {
+		return it.UUID
+	}), common.Map(h.users, func(it option.VMessUser) int {
+		return it.AlterId
+	}))
+	if err != nil {
+		return err
 	}
 	return nil
 }

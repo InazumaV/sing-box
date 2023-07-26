@@ -5,7 +5,7 @@ import (
 	"net/netip"
 	"os"
 
-	"github.com/sagernet/sing-box/adapter"
+	"github.com/inazumav/sing-box/adapter"
 	"github.com/sagernet/sing-dns"
 	E "github.com/sagernet/sing/common/exceptions"
 	"github.com/sagernet/sing/common/logger"

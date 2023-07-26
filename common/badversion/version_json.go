@@ -1,6 +1,6 @@
 package badversion
 
-import "github.com/sagernet/sing-box/common/json"
+import "github.com/inazumav/sing-box/common/json"
 
 func (v Version) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.String())

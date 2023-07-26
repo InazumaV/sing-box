@@ -5,10 +5,10 @@ import (
 	"net"
 	"os"
 
-	"github.com/sagernet/sing-box/adapter"
-	C "github.com/sagernet/sing-box/constant"
-	"github.com/sagernet/sing-box/log"
-	"github.com/sagernet/sing-box/option"
+	"github.com/inazumav/sing-box/adapter"
+	C "github.com/inazumav/sing-box/constant"
+	"github.com/inazumav/sing-box/log"
+	"github.com/inazumav/sing-box/option"
 	"github.com/sagernet/sing-shadowsocks"
 	"github.com/sagernet/sing-shadowsocks/shadowaead"
 	"github.com/sagernet/sing-shadowsocks/shadowaead_2022"
@@ -86,6 +86,47 @@ func newShadowsocksMulti(ctx context.Context, router adapter.Router, logger log.
 	inbound.packetUpstream = service
 	inbound.users = options.Users
 	return inbound, err
+}
+
+func (h *ShadowsocksMulti) AddUsers(users []option.ShadowsocksUser) error {
+	temp := make([]option.ShadowsocksUser, 0, len(h.users)+len(users))
+	temp = append(temp, h.users...)
+	temp = append(temp, users...)
+	err := h.service.UpdateUsersWithPasswords(common.MapIndexed(temp, func(index int, user option.ShadowsocksUser) int {
+		return index
+	}), common.Map(temp, func(user option.ShadowsocksUser) string {
+		return user.Password
+	}))
+	return err
+}
+
+func (h *ShadowsocksMulti) DelUsers(name []string) error {
+	is := make([]int, 0, len(name))
+	ulen := len(name)
+	for i := range h.users {
+		for _, n := range name {
+			if h.users[i].Name == n {
+				is = append(is, i)
+				ulen--
+			}
+			if ulen == 0 {
+				break
+			}
+		}
+	}
+	ulen = len(h.users)
+	for _, i := range is {
+		h.users[i] = h.users[ulen-1]
+		h.users[ulen-1] = option.ShadowsocksUser{}
+		h.users = h.users[:ulen-1]
+		ulen--
+	}
+	err := h.service.UpdateUsersWithPasswords(common.MapIndexed(h.users, func(index int, user option.ShadowsocksUser) int {
+		return index
+	}), common.Map(h.users, func(user option.ShadowsocksUser) string {
+		return user.Password
+	}))
+	return err
 }
 
 func (h *ShadowsocksMulti) NewConnection(ctx context.Context, conn net.Conn, metadata adapter.InboundContext) error {

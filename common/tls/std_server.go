@@ -6,9 +6,9 @@ import (
 	"net"
 	"os"
 
-	"github.com/sagernet/sing-box/adapter"
-	"github.com/sagernet/sing-box/log"
-	"github.com/sagernet/sing-box/option"
+	"github.com/inazumav/sing-box/adapter"
+	"github.com/inazumav/sing-box/log"
+	"github.com/inazumav/sing-box/option"
 	"github.com/sagernet/sing/common"
 	E "github.com/sagernet/sing/common/exceptions"
 

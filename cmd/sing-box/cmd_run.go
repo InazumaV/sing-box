@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	box "github.com/inazumav/sing-box"
 	"io"
 	"os"
 	"os/signal"
@@ -12,10 +13,9 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/sagernet/sing-box"
-	"github.com/sagernet/sing-box/common/badjsonmerge"
-	"github.com/sagernet/sing-box/log"
-	"github.com/sagernet/sing-box/option"
+	"github.com/inazumav/sing-box/common/badjsonmerge"
+	"github.com/inazumav/sing-box/log"
+	"github.com/inazumav/sing-box/option"
 	E "github.com/sagernet/sing/common/exceptions"
 
 	"github.com/spf13/cobra"

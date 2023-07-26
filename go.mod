@@ -1,4 +1,4 @@
-module github.com/sagernet/sing-box
+module github.com/inazumav/sing-box
 
 go 1.18
 

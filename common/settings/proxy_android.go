@@ -4,8 +4,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/sagernet/sing-box/adapter"
-	C "github.com/sagernet/sing-box/constant"
+	"github.com/inazumav/sing-box/adapter"
+	C "github.com/inazumav/sing-box/constant"
 	F "github.com/sagernet/sing/common/format"
 	"github.com/sagernet/sing/common/shell"
 )

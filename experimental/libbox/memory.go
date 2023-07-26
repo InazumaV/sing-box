@@ -4,7 +4,7 @@ import (
 	"math"
 	runtimeDebug "runtime/debug"
 
-	"github.com/sagernet/sing-box/common/dialer/conntrack"
+	"github.com/inazumav/sing-box/common/dialer/conntrack"
 )
 
 func SetMemoryLimit(enabled bool) {

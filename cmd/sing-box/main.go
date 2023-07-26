@@ -4,8 +4,8 @@ import (
 	"os"
 	"time"
 
-	_ "github.com/sagernet/sing-box/include"
-	"github.com/sagernet/sing-box/log"
+	_ "github.com/inazumav/sing-box/include"
+	"github.com/inazumav/sing-box/log"
 
 	"github.com/spf13/cobra"
 )

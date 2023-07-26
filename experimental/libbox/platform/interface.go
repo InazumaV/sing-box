@@ -5,9 +5,9 @@ import (
 	"io"
 	"net/netip"
 
-	"github.com/sagernet/sing-box/adapter"
-	"github.com/sagernet/sing-box/common/process"
-	"github.com/sagernet/sing-box/option"
+	"github.com/inazumav/sing-box/adapter"
+	"github.com/inazumav/sing-box/common/process"
+	"github.com/inazumav/sing-box/option"
 	"github.com/sagernet/sing-tun"
 	"github.com/sagernet/sing/common/control"
 	E "github.com/sagernet/sing/common/exceptions"

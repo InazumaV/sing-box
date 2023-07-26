@@ -8,10 +8,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/sagernet/sing-box/adapter"
-	"github.com/sagernet/sing-box/common/badjson"
-	"github.com/sagernet/sing-box/common/urltest"
-	"github.com/sagernet/sing-box/outbound"
+	"github.com/inazumav/sing-box/adapter"
+	"github.com/inazumav/sing-box/common/badjson"
+	"github.com/inazumav/sing-box/common/urltest"
+	"github.com/inazumav/sing-box/outbound"
 	"github.com/sagernet/sing/common"
 	"github.com/sagernet/sing/common/batch"
 

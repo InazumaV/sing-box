@@ -3,7 +3,7 @@ package badjson
 import (
 	"bytes"
 
-	"github.com/sagernet/sing-box/common/json"
+	"github.com/inazumav/sing-box/common/json"
 	E "github.com/sagernet/sing/common/exceptions"
 )
 

@@ -7,8 +7,8 @@ import (
 	"path/filepath"
 	"sync"
 
-	"github.com/sagernet/sing-box/common/urltest"
-	"github.com/sagernet/sing-box/log"
+	"github.com/inazumav/sing-box/common/urltest"
+	"github.com/inazumav/sing-box/log"
 	"github.com/sagernet/sing/common"
 	"github.com/sagernet/sing/common/debug"
 	E "github.com/sagernet/sing/common/exceptions"

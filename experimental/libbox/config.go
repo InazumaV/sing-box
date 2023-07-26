@@ -4,9 +4,9 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+	box "github.com/inazumav/sing-box"
 
-	"github.com/sagernet/sing-box"
-	"github.com/sagernet/sing-box/option"
+	"github.com/inazumav/sing-box/option"
 	E "github.com/sagernet/sing/common/exceptions"
 )
 

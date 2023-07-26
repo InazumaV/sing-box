@@ -9,7 +9,7 @@ import (
 	"net/url"
 	"os"
 
-	"github.com/sagernet/sing-box/log"
+	"github.com/inazumav/sing-box/log"
 	"github.com/sagernet/sing/common/bufio"
 	M "github.com/sagernet/sing/common/metadata"
 

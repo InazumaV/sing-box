@@ -1,7 +1,7 @@
 package mux
 
 import (
-	"github.com/sagernet/sing-box/option"
+	"github.com/inazumav/sing-box/option"
 	"github.com/sagernet/sing-mux"
 	N "github.com/sagernet/sing/common/network"
 )

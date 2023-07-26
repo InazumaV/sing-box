@@ -6,14 +6,14 @@ import (
 	"context"
 	"sync"
 
+	"github.com/inazumav/sing-box/adapter"
+	"github.com/inazumav/sing-box/common/tls"
+	C "github.com/inazumav/sing-box/constant"
+	"github.com/inazumav/sing-box/log"
+	"github.com/inazumav/sing-box/option"
+	"github.com/inazumav/sing-box/transport/hysteria"
 	"github.com/sagernet/quic-go"
 	"github.com/sagernet/quic-go/congestion"
-	"github.com/sagernet/sing-box/adapter"
-	"github.com/sagernet/sing-box/common/tls"
-	C "github.com/sagernet/sing-box/constant"
-	"github.com/sagernet/sing-box/log"
-	"github.com/sagernet/sing-box/option"
-	"github.com/sagernet/sing-box/transport/hysteria"
 	"github.com/sagernet/sing/common"
 	"github.com/sagernet/sing/common/auth"
 	E "github.com/sagernet/sing/common/exceptions"
@@ -322,6 +322,51 @@ func (h *Hysteria) acceptStream(ctx context.Context, conn quic.Connection, strea
 		go packetConn.Hold()
 		return h.router.RoutePacketConnection(ctx, packetConn, metadata)
 	}
+}
+
+func (h *Hysteria) AddUsers(users []option.HysteriaUser) error {
+	tmp := make([]string, 0, len(h.authKey)+len(users))
+	tmp = append(tmp, h.authKey...)
+	tmp = append(tmp, common.Map(users, func(it option.HysteriaUser) string {
+		if len(it.Auth) > 0 {
+			return string(it.Auth)
+		} else {
+			return it.AuthString
+		}
+	})...)
+	tmp = make([]string, 0, len(h.authKey)+len(users))
+	tmp = append(tmp, h.authUser...)
+	tmp = append(tmp, common.Map(users, func(it option.HysteriaUser) string {
+		return it.Name
+	})...)
+	return nil
+}
+
+func (h *Hysteria) DelUsers(names []string) error {
+	ins := make([]int, 0, len(names))
+	ulen := len(names)
+	for i := range h.authUser {
+		for _, s := range names {
+			if h.authUser[i] == s {
+				ins = append(ins, i)
+				ulen--
+			}
+			if ulen == 0 {
+				break
+			}
+		}
+	}
+	ulen = len(h.authKey)
+	for _, i := range ins {
+		h.authKey[i] = h.authKey[ulen-1]
+		h.authKey[ulen-1] = ""
+		h.authKey = h.authKey[:ulen-1]
+		h.authUser[i] = h.authUser[ulen-1]
+		h.authUser[i] = ""
+		h.authUser = h.authUser[:ulen-1]
+		ulen--
+	}
+	return nil
 }
 
 func (h *Hysteria) Close() error {

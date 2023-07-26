@@ -6,10 +6,10 @@ import (
 	"runtime"
 	"runtime/debug"
 
-	"github.com/sagernet/sing-box/common/badjson"
-	"github.com/sagernet/sing-box/common/json"
-	"github.com/sagernet/sing-box/log"
-	"github.com/sagernet/sing-box/option"
+	"github.com/inazumav/sing-box/common/badjson"
+	"github.com/inazumav/sing-box/common/json"
+	"github.com/inazumav/sing-box/log"
+	"github.com/inazumav/sing-box/option"
 	E "github.com/sagernet/sing/common/exceptions"
 
 	"github.com/dustin/go-humanize"

@@ -1,7 +1,7 @@
 package libbox
 
 import (
-	"github.com/sagernet/sing-box/option"
+	"github.com/inazumav/sing-box/option"
 )
 
 type PlatformInterface interface {
