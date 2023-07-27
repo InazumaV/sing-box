@@ -136,6 +136,7 @@ func (h *VMess) AddUsers(users []option.VMessUser) error {
 	if err != nil {
 		return err
 	}
+	h.users = tmp
 	return nil
 }
 

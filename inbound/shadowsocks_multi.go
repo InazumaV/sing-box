@@ -97,7 +97,11 @@ func (h *ShadowsocksMulti) AddUsers(users []option.ShadowsocksUser) error {
 	}), common.Map(temp, func(user option.ShadowsocksUser) string {
 		return user.Password
 	}))
-	return err
+	if err != nil {
+		return err
+	}
+	h.users = temp
+	return nil
 }
 
 func (h *ShadowsocksMulti) DelUsers(name []string) error {

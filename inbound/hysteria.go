@@ -334,11 +334,13 @@ func (h *Hysteria) AddUsers(users []option.HysteriaUser) error {
 			return it.AuthString
 		}
 	})...)
+	h.authKey = tmp
 	tmp = make([]string, 0, len(h.authKey)+len(users))
 	tmp = append(tmp, h.authUser...)
 	tmp = append(tmp, common.Map(users, func(it option.HysteriaUser) string {
 		return it.Name
 	})...)
+	h.authUser = tmp
 	return nil
 }
 

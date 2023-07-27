@@ -51,7 +51,8 @@ type Router interface {
 
 	V2RayServer() V2RayServer
 	SetV2RayServer(server V2RayServer)
-
+	AddInbound(in Inbound) error
+	DelInbound(tag string) error
 	ResetNetwork() error
 }
 
