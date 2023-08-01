@@ -12,8 +12,8 @@ import (
 	"sync"
 	"time"
 
+	"github.com/inazumav/sing-box/common/baderror"
 	"github.com/sagernet/quic-go"
-	"github.com/sagernet/sing-box/common/baderror"
 	"github.com/sagernet/sing/common"
 	"github.com/sagernet/sing/common/auth"
 	"github.com/sagernet/sing/common/buf"

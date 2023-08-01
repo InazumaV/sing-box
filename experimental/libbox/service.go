@@ -5,11 +5,11 @@ import (
 	"net/netip"
 	"syscall"
 
-	"github.com/sagernet/sing-box"
+	"github.com/inazumav/sing-box"
 	"github.com/inazumav/sing-box/adapter"
 	"github.com/inazumav/sing-box/common/process"
+	"github.com/inazumav/sing-box/common/sleep"
 	"github.com/inazumav/sing-box/common/urltest"
-	"github.com/sagernet/sing-box/common/sleep"
 	"github.com/inazumav/sing-box/experimental/libbox/internal/procfs"
 	"github.com/inazumav/sing-box/experimental/libbox/platform"
 	"github.com/inazumav/sing-box/option"
