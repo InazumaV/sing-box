@@ -60,9 +60,10 @@ func NewStatsService(options option.V2RayStatsServiceOptions) *StatsService {
 	}
 }
 
-func (s *StatsService) RoutedConnection(inbound string, outbound string, user string, conn net.Conn) net.Conn {
+func (s *StatsService) RoutedConnection(metadata adapter.InboundContext, outbound string, user string, conn net.Conn) net.Conn {
 	var readCounter []*atomic.Int64
 	var writeCounter []*atomic.Int64
+	inbound := metadata.Inbound
 	countInbound := inbound != "" && s.inbounds[inbound]
 	countOutbound := outbound != "" && s.outbounds[outbound]
 	countUser := user != "" && s.users[user]
@@ -86,9 +87,10 @@ func (s *StatsService) RoutedConnection(inbound string, outbound string, user st
 	return bufio.NewInt64CounterConn(conn, readCounter, writeCounter)
 }
 
-func (s *StatsService) RoutedPacketConnection(inbound string, outbound string, user string, conn N.PacketConn) N.PacketConn {
+func (s *StatsService) RoutedPacketConnection(metadata adapter.InboundContext, outbound string, user string, conn N.PacketConn) N.PacketConn {
 	var readCounter []*atomic.Int64
 	var writeCounter []*atomic.Int64
+	inbound := metadata.Inbound
 	countInbound := inbound != "" && s.inbounds[inbound]
 	countOutbound := outbound != "" && s.outbounds[outbound]
 	countUser := user != "" && s.users[user]

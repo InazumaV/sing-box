@@ -715,7 +715,7 @@ func (r *Router) RouteConnection(ctx context.Context, conn net.Conn, metadata ad
 	}
 	if r.v2rayServer != nil {
 		if statsService := r.v2rayServer.StatsService(); statsService != nil {
-			conn = statsService.RoutedConnection(metadata.Inbound, detour.Tag(), metadata.User, conn)
+			conn = statsService.RoutedConnection(metadata, detour.Tag(), metadata.User, conn)
 		}
 	}
 	return detour.NewConnection(ctx, conn, metadata)
@@ -823,7 +823,7 @@ func (r *Router) RoutePacketConnection(ctx context.Context, conn N.PacketConn, m
 	}
 	if r.v2rayServer != nil {
 		if statsService := r.v2rayServer.StatsService(); statsService != nil {
-			conn = statsService.RoutedPacketConnection(metadata.Inbound, detour.Tag(), metadata.User, conn)
+			conn = statsService.RoutedPacketConnection(metadata, detour.Tag(), metadata.User, conn)
 		}
 	}
 	if originAddress.IsValid() {

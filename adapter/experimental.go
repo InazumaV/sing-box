@@ -54,6 +54,6 @@ type V2RayServer interface {
 }
 
 type V2RayStatsService interface {
-	RoutedConnection(inbound string, outbound string, user string, conn net.Conn) net.Conn
-	RoutedPacketConnection(inbound string, outbound string, user string, conn N.PacketConn) N.PacketConn
+	RoutedConnection(metadata InboundContext, outbound string, user string, conn net.Conn) net.Conn
+	RoutedPacketConnection(metadata InboundContext, outbound string, user string, conn N.PacketConn) N.PacketConn
 }
