@@ -124,6 +124,7 @@ type InboundOptions struct {
 	SniffOverrideDestination bool           `json:"sniff_override_destination,omitempty"`
 	SniffTimeout             Duration       `json:"sniff_timeout,omitempty"`
 	DomainStrategy           DomainStrategy `json:"domain_strategy,omitempty"`
+	DelayClose               int            `json:"delay_close"`
 }
 
 type ListenOptions struct {

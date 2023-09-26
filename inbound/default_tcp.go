@@ -3,6 +3,7 @@ package inbound
 import (
 	"context"
 	"net"
+	"time"
 
 	"github.com/inazumav/sing-box/adapter"
 	"github.com/inazumav/sing-box/common/proxyproto"
@@ -64,7 +65,23 @@ func (a *myInboundAdapter) loopTCPIn() {
 	}
 }
 
+type DelayCloseConn struct {
+	time time.Duration
+	net.Conn
+}
+
+func (d *DelayCloseConn) Close() error {
+	time.Sleep(d.time)
+	return d.Conn.Close()
+}
+
 func (a *myInboundAdapter) injectTCP(conn net.Conn, metadata adapter.InboundContext) {
+	if a.listenOptions.DelayClose != 0 {
+		conn = &DelayCloseConn{
+			time: time.Second * time.Duration(a.listenOptions.DelayClose),
+			Conn: conn,
+		}
+	}
 	ctx := log.ContextWithNewID(a.ctx)
 	metadata = a.createMetadata(conn, metadata)
 	a.logger.InfoContext(ctx, "inbound connection from ", metadata.Source)
